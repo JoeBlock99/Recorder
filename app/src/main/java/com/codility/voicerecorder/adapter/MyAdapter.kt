@@ -9,11 +9,13 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import com.codility.voicerecorder.MainActivity
 import com.codility.voicerecorder.R
+import com.codility.voicerecorder.RecordListActivity
 import com.codility.voicerecorder.model.Recording
 import kotlinx.android.synthetic.main.item_recording.view.*
 
@@ -47,12 +49,13 @@ class MyAdapter(private val recordList: ArrayList<Recording>) : RecyclerView.Ada
         private var lastProgress = 0
         private val mHandler = Handler()
 
+
         fun bindItems(recordingList: ArrayList<Recording>, onClickListener: OnClickListener?) {
             val recording: Recording = recordingList[adapterPosition]
             val tvRecordName = itemView.findViewById<TextView>(R.id.tvRecordName)
             val imgViewPlay = itemView.findViewById<ImageView>(R.id.imgViewPlay)
             val seekBar = itemView.findViewById<SeekBar>(R.id.seekBar)
-            val trashCan = itemView.findViewById<ImageView>(R.id.image_delete)
+            val trashCan = itemView.findViewById<Button>(R.id.imgBtDelete)
             tvRecordName.text = recording.fileName
 
             if (recording.isPlaying) {
@@ -72,6 +75,9 @@ class MyAdapter(private val recordList: ArrayList<Recording>) : RecyclerView.Ada
                 if (onClickListener != null) {
                     onClickListener.onClickPlay(itemView, recording, recordingList, adapterPosition)
                 }
+            })
+            trashCan.setOnClickListener(View.OnClickListener{
+                onClickListener?.onClickPlay(itemView, recording, recordingList, adapterPosition)
             })
 
         }
@@ -109,6 +115,5 @@ class MyAdapter(private val recordList: ArrayList<Recording>) : RecyclerView.Ada
 
     interface OnClickListener {
         fun onClickPlay(view: View, record: Recording, recordingList: ArrayList<Recording>, position: Int)
-
     }
 }

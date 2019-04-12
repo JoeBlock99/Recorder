@@ -48,12 +48,17 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="15dp"
             android:background="@android:color/darker_gray" />
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/imgBtDelete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_above="@+id/ll"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/ic_delete_" />
 
-        <ImageView
-            android:id="@+id/image_delete"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_delete_" />
+
 
     </LinearLayout>
 

@@ -192,9 +192,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
         })
     }
-    private fun delete(){
-        deleteFile(fileName)
-    }
+
 
     private var runnable: Runnable = Runnable { seekBarUpdate() }
 

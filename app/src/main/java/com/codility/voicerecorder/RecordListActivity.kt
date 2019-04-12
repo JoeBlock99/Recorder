@@ -27,7 +27,10 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
     private var isPlaying = false
     private var last_index = -1
     private var myAdapter: MyAdapter? = null
-    private val recordArrayList = ArrayList<Recording>()
+    companion object {
+        @JvmStatic val recordArrayList = ArrayList<Recording>()
+    }
+
 
     override fun onClickPlay(view: View, record: Recording, recordingList: ArrayList<Recording>, position: Int) {
         playRecordItem(view, record, recordingList, position)
@@ -71,7 +74,6 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         setContentView(R.layout.record_list)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         getAllRecordings()
-
     }
 
     private fun getAllRecordings() {
@@ -157,6 +159,9 @@ class RecordListActivity : AppCompatActivity(), MyAdapter.OnClickListener {
             audio!!.isPlaying = false
             myAdapter!!.notifyItemChanged(position)
         })
+    }
+    private fun delete(int: Int){
+        deleteFile(recordArrayList[int].fileName)
     }
 
     private fun markAllPaused(recordingList: ArrayList<Recording>) {
